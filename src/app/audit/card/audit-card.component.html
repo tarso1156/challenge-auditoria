@@ -1,0 +1,23 @@
+<mat-card class="audit-card">
+    <mat-card-content>
+        <div class="subtitle" matTooltip="Organismo Certificador">
+            <mat-icon>business</mat-icon><span>{{audit.regulatoryOrg}}</span>
+        </div>
+        <div class="subtitle" matTooltip="Período de Realização"><mat-icon>today</mat-icon>
+            <span>{{audit.startingPeriod | date:'dd/MM/yyyy':'pt-BR'}} - {{audit.endingPeriod | date:'dd/MM/yyyy':'pt-BR'}}</span>
+        </div>
+        <div class="subtitle" matTooltip="Responsável pela Auditoria" *ngFor="let auditor of audit.auditors">
+            <mat-icon>assignment_ind</mat-icon><span>{{auditor.name}} | {{auditor.office}}</span></div>
+        <p>{{audit.description}}</p>
+        <mat-chip-list>
+            <mat-chip class="chip" [ngClass]="getChipClass()" matTooltip="Situação"><mat-icon>error_outline</mat-icon>&nbsp;{{audit.status}}</mat-chip>
+        </mat-chip-list>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-mini-fab matTooltip="Editar" [routerLink]="'/audit/' + audit.$key"><mat-icon>edit</mat-icon></button>
+        &nbsp;
+        <button mat-mini-fab matTooltip="Abrir Anexo" *ngIf="audit.attachment" (click)="openAttachment()"><mat-icon>attachment</mat-icon></button>
+        &nbsp;
+        <button mat-mini-fab matTooltip="Deletar" style="float: right" (click)="confirmDeletion()"><mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+</mat-card>

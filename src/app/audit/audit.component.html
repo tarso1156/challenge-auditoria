@@ -1,0 +1,88 @@
+<div class="header-container">
+    <mat-toolbar color="primary" class="toolbar">
+        <mat-toolbar-row>
+            <span>Cadastrar Auditoria</span>
+            <span style="flex: auto;"></span>
+            <div class="buttons">
+                <button mat-fab matTooltip="Salvar" color="primary" (click)="store()">
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-fab matTooltip="Voltar" color="primary" routerLink="/home">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>description</mat-icon>
+                Cadastro da Auditorias
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+
+<form [formGroup]="form">
+    <div class="form-body">
+        <mat-form-field appearance="fill">
+            <mat-label>Organismo Certificador</mat-label>
+            <input matInput autocomplete="organization" required formControlName="regulatoryOrg">
+        </mat-form-field>
+
+        <div class="dates-form-section">
+            <mat-form-field appearance="fill">
+                <mat-label>Período de Inicio</mat-label>
+                <input matInput [matDatepicker]="picker" readonly required formControlName="startingPeriod">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Período de Finalização</mat-label>
+                <input matInput [matDatepicker]="picker2" readonly required formControlName="endingPeriod">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput rows="5" required formControlName="description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Situação</mat-label>
+            <input matInput [matAutocomplete]="auto" required formControlName="status">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let status of statuses" [value]="status">
+                    {{ status }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <button mat-mini-fab matPrefix type="button" class="attachment-button" matTooltip="Anexar Arquivo" (click)="selectFile(fileInput)">
+                <mat-icon>attachment</mat-icon>
+            </button>
+            <mat-label>Anexo</mat-label>
+            <input matInput readonly formControlName="attachment">
+        </mat-form-field>
+
+        <input #fileInput type="file" readonly hidden accept=".jpg, .jpeg, .png .doc .docx .pdf .ppt .pptx" (change)="startUpload($event)">
+
+        <div class="sub-heading">
+            Auditores *
+            <button mat-flat-button color="primary" style="margin-left: 1em;" type="button" (click)="cacheCurrentFormData()">
+                Cadastrar Novo Auditor
+            </button>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-selection-list clas="auditors-list" [(ngModel)]="selectedAuditors" [ngModelOptions]="{ standalone: true }">
+            <mat-list-option *ngFor="let auditor of auditors" [value]="auditor.$key">
+                {{ auditor.name }} | {{ auditor.office }} | {{ auditor.document }}
+            </mat-list-option>
+        </mat-selection-list>
+        <mat-divider></mat-divider>
+    </div>
+</form>

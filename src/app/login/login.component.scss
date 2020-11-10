@@ -1,0 +1,47 @@
+.login-section {
+    display: flex;
+    align-items: center;
+    place-content: center;
+    height: 100%;
+    background: lightgray;
+}
+
+.login-panel {
+    width: auto;
+    max-width: 550px;
+    padding: 1em;
+    background-color: whitesmoke;
+    box-shadow: 10px 5px 10px -8px rgba(0,0,0,0.75);
+    border-radius: 0.25em;
+    @media (max-width: 450px) {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        padding: 0;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.center-align {
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.def-padding {
+    padding: 1em;
+}
+
+.padding-top-form {
+    padding-top: 1.25em
+}
+
+.prefix-style {
+    margin-right: 15px;
+}
+
+img {
+    width: 18px;
+}

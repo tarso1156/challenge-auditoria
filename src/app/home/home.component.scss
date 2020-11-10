@@ -1,0 +1,19 @@
+::ng-deep body {
+    background: whitesmoke;
+}
+
+.audit-filter {
+    display: flex;
+    align-items: stretch;
+    padding: 1em 1em 0 1em;
+    :last-child {
+        flex: 1;
+        margin-left: 10px;
+    }
+    @media (max-width: 450px) {
+        :last-child {
+            margin: 0;
+        }
+        flex-direction: column;
+    }
+}

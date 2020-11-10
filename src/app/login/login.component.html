@@ -1,0 +1,61 @@
+
+<div class="login-section">
+    <div class="login-panel">
+        <mat-tab-group dynamicHeight="true" mat-align-tabs="center" [(selectedIndex)]="selectedIndex">
+            <mat-tab label="Login">
+                <div>
+                    <form [formGroup]="loginForm" autocomplete="on" (keydown.enter)="enterKeyDown($event)">
+                        <mat-form-field appearance="fill" class="full-width padding-top-form">
+                            <mat-label>E-mail</mat-label>
+                            <mat-icon matPrefix class="prefix-style">email</mat-icon>
+                            <input matInput formControlName="email" autofocus autocomplete="email" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="full-width">
+                            <mat-label>Senha</mat-label>
+                            <input matInput formControlName="password" autocomplete="current-password" required [type]="hidePwd.login ? 'password' : 'text'">
+                            <mat-icon matPrefix class="prefix-style">lock</mat-icon>
+                            <button mat-icon-button matSuffix autofocus="false" (click)="hidePwd.login = !hidePwd.login">
+                                <mat-icon>{{hidePwd.login ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <div class="center-align">
+                            <button mat-raised-button type="submit" color="primary" class="full-width" (click)="signIn()"><mat-icon>email</mat-icon>&nbsp;Acessar usando E-mail</button>
+                            <div class="def-padding">OU</div>
+                            <button mat-raised-button class="full-width" (click)="signInWithGoogle()"><img src="assets/svg/google.svg">&nbsp;Acessar usando Google</button>
+                        </div>
+                    </form>
+                </div>
+            </mat-tab>
+            <mat-tab label="Cadastrar">
+                <div>
+                    <form [formGroup]="entryForm" autocomplete="on" (keydown.enter)="enterKeyDown($event)">
+                        <mat-form-field appearance="fill" class="full-width padding-top-form">
+                            <mat-label>E-mail</mat-label>
+                            <mat-icon matPrefix class="prefix-style">email</mat-icon>
+                            <input matInput formControlName="email" required autocomplete="email">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="full-width">
+                            <mat-label>Senha</mat-label>
+                            <input matInput formControlName="password" required autocomplete="new-password" [type]="hidePwd.signIn ? 'password' : 'text'">
+                            <mat-icon matPrefix class="prefix-style">lock</mat-icon>
+                            <button mat-icon-button matSuffix (click)="hidePwd.signIn = !hidePwd.signIn">
+                                <mat-icon>{{hidePwd.signIn ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="full-width">
+                            <mat-label>Confirmar Senha</mat-label>
+                            <input matInput formControlName="passwordConf" required autocomplete="new-password" [type]="hidePwd.signInConf ? 'password' : 'text'">
+                            <mat-icon matPrefix class="prefix-style">done_all</mat-icon>
+                            <button mat-icon-button matSuffix (click)="hidePwd.signInConf = !hidePwd.signInConf">
+                                <mat-icon>{{hidePwd.signInConf ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <div class="center-align">
+                            <button mat-raised-button color="primary" class="full-width" (click)="signUp()"><mat-icon>done</mat-icon>&nbsp;Confirmar Cadastro</button>
+                        </div>
+                    </form>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="header-container">
+    <mat-toolbar color="primary" class="toolbar">
+        <mat-toolbar-row>
+            <span>Gestão de Auditorias</span>
+            <span style="flex: auto;"></span>
+            <button mat-fab matTooltip="Sobre" class="tbutton" type="button" color="primary" (click)="showAboutDialog()">
+                <mat-icon>info</mat-icon>
+            </button>
+            <div class="buttons">
+                <button mat-fab matTooltip="Incluir Auditoria" type="button" color="primary" routerLink="/audit">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <button mat-fab matTooltip="Logout" type="button" color="primary" (click)="signOut()">
+                    <mat-icon>exit_to_app</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>list_alt</mat-icon>
+                Listagem das Auditorias
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+    <form [formGroup]="form">
+        <div class="audit-filter">
+            <mat-form-field>
+                <mat-label>Filtrar por Situação</mat-label>
+                <input matInput [matAutocomplete]="auto" formControlName="status">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let status of statuses" [value]="status">
+                        {{ status }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </form>
+    <mat-divider></mat-divider>
+</div>
+<div class="audit-list">
+    <app-audit-card *ngFor="let audit of audits" [audit]=audit></app-audit-card>
+</div>

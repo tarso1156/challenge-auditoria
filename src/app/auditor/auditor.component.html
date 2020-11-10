@@ -1,0 +1,40 @@
+<div class="header-container">
+    <mat-toolbar color="primary" class="toolbar">
+        <mat-toolbar-row>
+            <span>Cadastrar Auditor</span>
+            <span style="flex: auto;"></span>
+            <div class="buttons">
+                <button mat-fab matTooltip="Salvar" type="submit" color="primary" (click)="store()">
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-fab matTooltip="Voltar" color="primary" routerLink="/audit">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>assignment_ind</mat-icon>
+                Cadastro de Auditores
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+<form [formGroup]="form" (keydown.enter)="store()">
+    <div class="form-body">
+        <mat-form-field appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input matInput autocomplete="name" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>CPF</mat-label>
+            <input matInput formControlName="document" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Cargo/Função</mat-label>
+            <input matInput autocomplete="organization" formControlName="office" required>
+        </mat-form-field>
+    </div>
+</form>

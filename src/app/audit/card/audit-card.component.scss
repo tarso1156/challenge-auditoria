@@ -1,0 +1,37 @@
+.mat-button-base {
+    outline: none;
+    box-shadow: none;
+}
+
+.audit-card {
+    min-width: 300px;
+    margin: 10px;
+    .subtitle {
+        &:first-child {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        cursor: default;
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        :last-child {
+            padding-left: 5px;
+        }
+    }
+    .chip {
+        margin: 0;
+        &.green {
+            background-color: #36f469;
+        }
+        &.yellow {
+            background-color: #f4e136;
+        }
+        &.red {
+            background-color: #f44336;
+        }
+    }
+    button:hover {
+        background-color: #006fc7;
+    }
+}
